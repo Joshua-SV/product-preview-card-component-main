@@ -1,0 +1,175 @@
+:root{
+    --primaryDark-cyan-400: hsl(158, 36%, 37%);
+    --primaryDarker-cyan-500: hsl(158, 36%, 20%);
+    --secondaryCream-200: hsl(30, 38%, 92%);
+    --Very-dark-blue-900: hsl(212, 21%, 14%);
+    --Dark-grayish-blue-400: hsl(228, 12%, 48%);
+    --White-100: hsl(0, 0%, 100%);
+
+    --fontweight-regular: 500;
+    --fontweight-bold: 700;
+
+    --font-family-accent: 'Fraunces', serif;
+    --font-family-regular: 'Montserrat', sans-serif;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  /*general styling*/
+  body{
+    font-family: var(--font-family-regular);
+    font-weight: var(--fontweight-regular);
+    color: var(--Dark-grayish-blue-400);
+    font-size: 0.875rem;
+    background-color: var(--secondaryCream-200);
+
+    /*centering the card to the center body of page*/
+    display: grid;
+    place-content: center;
+    margin: 1rem;
+  }
+
+  /*utilities*/
+  .flex-group{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .visually-hidden:not(:focus):not(:active){
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /*product card style*/
+  .product{
+    --local-padding: 1.5rem;/*declare a local variable to use late*/
+
+
+    display: grid;/*allown for change to columns or stack*/
+    background-color: var(--White-100);
+    border-radius: .5rem;
+    overflow: hidden;/*let all corners be rounded in the card even when content is overflowing*/
+    max-width: 600px;/*limit how much the card can stretch/expand as screen increases*/
+  }
+
+  @media (min-width: 600px)/*provide the minimum width of screen to get 2 columns rather than stack form*/
+  {
+    .product{
+        --local-padding: 2rem;
+        grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .product__content{
+    padding: var(--local-padding); /*center the card text and button*/
+    display: grid;/*strech the button*/
+    gap: 1rem; /*space between item*/
+  }
+
+  .product__category{
+    font-size: 0.825rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  .product__title{
+    color: var(--Very-dark-blue-900);
+    font-size: 2rem;
+    font-family: var(--font-family-accent);
+  }
+
+h1{
+    line-height: 1;
+  }
+
+.product__price{
+    font-size: 2rem;
+    font-family: var(--font-family-accent);
+    color: var(--primaryDark-cyan-400);
+  }
+
+  .product__original-price{
+    text-decoration: line-through;
+  }
+
+  /*button style*/
+  .button{
+    cursor: pointer;
+    background-color: var(--primaryDark-cyan-400);
+    color: var(--White-100);
+    font-weight: var(--fontweight-bold);
+    font-size: 0.925rem;
+    border-radius: 0.5rem;
+    padding: .8rem 1.5rem;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+
+  }
+
+  .button:is(:hover,:focus){
+    background-color: var(--primaryDarker-cyan-500);
+  }
+
+  .button[data-icon="shopping-cart"]::before{
+    content: "";
+    width: 15px;
+    height: 16px;
+background-image: url(./images/icon-cart.svg);
+  }
